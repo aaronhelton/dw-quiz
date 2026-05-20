@@ -1,6 +1,6 @@
 <?php
 /**
- * Spanish language file for Quizlet Plugin
+ * Spanish language file for DW-Quiz Plugin
  */
 
 $lang['btn_submit'] = 'Enviar cuestionario';
