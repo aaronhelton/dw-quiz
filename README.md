@@ -1,4 +1,4 @@
-# Quizlet Plugin for DokuWiki
+# A Simple Quiz Plugin for DokuWiki
 
 A simple quiz plugin for DokuWiki that allows page editors to create interactive quizzes with scoring.
 
@@ -51,8 +51,8 @@ To add additional languages, create a new directory under `lang/` with the langu
 
 ## Installation
 
-1. Download the quizlet plugin
-2. Extract to your DokuWiki plugins directory: `lib/plugins/quizlet/`
+1. Download the dw-quiz plugin
+2. Extract to your DokuWiki plugins directory: `lib/plugins/dw-quiz/`
 3. Enable the plugin in DokuWiki admin panel
 
 ## Usage
