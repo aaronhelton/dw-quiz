@@ -1,6 +1,6 @@
 <?php
 /**
- * DokuWiki Plugin dw-quiz (Syntax Component)
+ * DokuWiki Plugin dwquiz (Syntax Component)
  *
  * @license    GPL 2.0
  * @author     Aaron Helton
@@ -8,7 +8,7 @@
 
 if (!defined('DOKU_INC')) die();
 
-class syntax_plugin_dw_quiz extends DokuWiki_Syntax_Plugin {
+class syntax_plugin_dwquiz extends DokuWiki_Syntax_Plugin {
 
     public function getType() {
         return 'protected';
@@ -23,11 +23,11 @@ class syntax_plugin_dw_quiz extends DokuWiki_Syntax_Plugin {
     }
 
     public function connectTo($mode) {
-        $this->Lexer->addEntryPattern('<quiz\b.*?>', $mode, 'plugin_dw_quiz');
+        $this->Lexer->addEntryPattern('<quiz\b.*?>', $mode, 'plugin_dwquiz');
     }
 
     public function postConnect() {
-        $this->Lexer->addExitPattern('</quiz>', 'plugin_dw_quiz');
+        $this->Lexer->addExitPattern('</quiz>', 'plugin_dwquiz');
     }
 
     public function handle($match, $state, $pos, Doku_Handler $handler) {
