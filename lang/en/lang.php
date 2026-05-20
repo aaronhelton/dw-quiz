@@ -1,6 +1,6 @@
 <?php
 /**
- * English language file for Quizlet Plugin
+ * English language file for DW-Quiz Plugin
  */
 
 $lang['btn_submit'] = 'Submit Quiz';
