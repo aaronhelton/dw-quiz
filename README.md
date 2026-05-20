@@ -1,4 +1,4 @@
-# A Simple Quiz Plugin for DokuWiki
+# DW-Quiz: A Simple Quiz Plugin for DokuWiki
 
 A simple quiz plugin for DokuWiki that allows page editors to create interactive quizzes with scoring.
 
