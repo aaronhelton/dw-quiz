@@ -1,6 +1,6 @@
 <?php
 /**
- * DokuWiki Plugin Quizlet (Syntax Component)
+ * DokuWiki Plugin dw-quiz (Syntax Component)
  *
  * @license    GPL 2.0
  * @author     Aaron Helton
@@ -8,7 +8,7 @@
 
 if (!defined('DOKU_INC')) die();
 
-class syntax_plugin_quizlet extends DokuWiki_Syntax_Plugin {
+class syntax_plugin_dw_quiz extends DokuWiki_Syntax_Plugin {
 
     public function getType() {
         return 'protected';
@@ -23,11 +23,11 @@ class syntax_plugin_quizlet extends DokuWiki_Syntax_Plugin {
     }
 
     public function connectTo($mode) {
-        $this->Lexer->addEntryPattern('<quiz\b.*?>', $mode, 'plugin_quizlet');
+        $this->Lexer->addEntryPattern('<quiz\b.*?>', $mode, 'plugin_dw_quiz');
     }
 
     public function postConnect() {
-        $this->Lexer->addExitPattern('</quiz>', 'plugin_quizlet');
+        $this->Lexer->addExitPattern('</quiz>', 'plugin_dw_quiz');
     }
 
     public function handle($match, $state, $pos, Doku_Handler $handler) {
@@ -99,8 +99,8 @@ class syntax_plugin_quizlet extends DokuWiki_Syntax_Plugin {
 
         if ($state == DOKU_LEXER_ENTER) {
                // Register CSS and JavaScript resources
-               $css_file = DOKU_BASE . 'lib/plugins/quizlet/style.css';
-               $js_file = DOKU_BASE . 'lib/plugins/quizlet/script.js';
+               $css_file = DOKU_BASE . 'lib/plugins/dw-quiz/style.css';
+               $js_file = DOKU_BASE . 'lib/plugins/dw-quiz/script.js';
                $renderer->doc .= '<link rel="stylesheet" type="text/css" href="' . $css_file . '" />';
                $renderer->doc .= '<script type="text/javascript" src="' . $js_file . '"></script>';
             return true;
@@ -124,15 +124,15 @@ class syntax_plugin_quizlet extends DokuWiki_Syntax_Plugin {
         $reset_text = $this->getLang('btn_reset');
         $error_all_text = $this->getLang('error_answer_all');
 
-        $renderer->doc .= '<div class="quizlet-container" id="' . $quiz_id . '" data-error-all="' . hsc($error_all_text) . '">';
-        $renderer->doc .= '<div class="quizlet-questions">';
+        $renderer->doc .= '<div class="dw-quiz-container" id="' . $quiz_id . '" data-error-all="' . hsc($error_all_text) . '">';
+        $renderer->doc .= '<div class="dw-quiz-questions">';
 
         foreach ($questions as $q_index => $question) {
-            $renderer->doc .= '<div class="quizlet-question" data-question="' . $q_index . '">';
-            $renderer->doc .= '<div class="quizlet-question-text">' . 
+            $renderer->doc .= '<div class="dw-quiz-question" data-question="' . $q_index . '">';
+            $renderer->doc .= '<div class="dw-quiz-question-text">' . 
                 nl2br(hsc($question['question'])) . 
                 '</div>';
-            $renderer->doc .= '<div class="quizlet-answers">';
+            $renderer->doc .= '<div class="dw-quiz-answers">';
 
             // Shuffle answers but keep track of correct one
             $answers = $question['answers'];
@@ -151,11 +151,11 @@ class syntax_plugin_quizlet extends DokuWiki_Syntax_Plugin {
 
             foreach ($shuffled_answers as $a_index => $answer) {
                 $answer_id = $quiz_id . '_q' . $q_index . '_a' . $a_index;
-                $renderer->doc .= '<label class="quizlet-answer">';
+                $renderer->doc .= '<label class="dw-quiz-answer">';
                 $renderer->doc .= '<input type="radio" name="' . $quiz_id . '_q' . $q_index . 
                     '" value="' . $a_index . '" data-correct="' . 
                     ($answer['correct'] ? 'true' : 'false') . '" id="' . $answer_id . '">';
-                $renderer->doc .= '<span class="quizlet-answer-text">' . 
+                $renderer->doc .= '<span class="dw-quiz-answer-text">' . 
                     hsc($answer['text']) . 
                     '</span>';
                 $renderer->doc .= '</label>';
@@ -166,12 +166,12 @@ class syntax_plugin_quizlet extends DokuWiki_Syntax_Plugin {
         }
 
         $renderer->doc .= '</div>';
-        $renderer->doc .= '<div class="quizlet-controls">';
-        $renderer->doc .= '<button class="quizlet-submit" data-quiz="' . $quiz_id . '">' . hsc($submit_text) . '</button>';
-        $renderer->doc .= '<button class="quizlet-reset" data-quiz="' . $quiz_id . '">' . hsc($reset_text) . '</button>';
+        $renderer->doc .= '<div class="dw-quiz-controls">';
+        $renderer->doc .= '<button class="dw-quiz-submit" data-quiz="' . $quiz_id . '">' . hsc($submit_text) . '</button>';
+        $renderer->doc .= '<button class="dw-quiz-reset" data-quiz="' . $quiz_id . '">' . hsc($reset_text) . '</button>';
         $renderer->doc .= '</div>';
-        $renderer->doc .= '<div class="quizlet-score" id="' . $quiz_id . '_score" style="display:none;" data-template="' . hsc($this->getLang('result_score')) . '" data-pass="' . hsc($this->getLang('result_pass')) . '" data-fail="' . hsc($this->getLang('result_fail')) . '">';
-        $renderer->doc .= '<div class="quizlet-score-text"></div>';
+        $renderer->doc .= '<div class="dw-quiz-score" id="' . $quiz_id . '_score" style="display:none;" data-template="' . hsc($this->getLang('result_score')) . '" data-pass="' . hsc($this->getLang('result_pass')) . '" data-fail="' . hsc($this->getLang('result_fail')) . '">';
+        $renderer->doc .= '<div class="dw-quiz-score-text"></div>';
         $renderer->doc .= '</div>';
         $renderer->doc .= '</div>';
 
