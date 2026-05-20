@@ -1,5 +1,5 @@
 /**
- * DokuWiki Plugin dw-quiz (JavaScript Component)
+ * DokuWiki Plugin dwquiz (JavaScript Component)
  * 
  * Handles the interactive quiz functionality
  * @license    GPL 2.0
