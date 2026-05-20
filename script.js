@@ -1,5 +1,5 @@
 /**
- * DokuWiki Plugin Quizlet (JavaScript Component)
+ * DokuWiki Plugin dw-quiz (JavaScript Component)
  * 
  * Handles the interactive quiz functionality
  * @license    GPL 2.0
@@ -7,12 +7,12 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Get all quiz containers
-    const quizzes = document.querySelectorAll('.quizlet-container');
+    const quizzes = document.querySelectorAll('.dw-quiz-container');
     
     quizzes.forEach(function(quiz) {
         const quizId = quiz.id;
-        const submitBtn = quiz.querySelector('.quizlet-submit');
-        const resetBtn = quiz.querySelector('.quizlet-reset');
+        const submitBtn = quiz.querySelector('.dw-quiz-submit');
+        const resetBtn = quiz.querySelector('.dw-quiz-reset');
         
         if (submitBtn) {
             submitBtn.addEventListener('click', function() {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Add click handlers to answers for immediate feedback
-        const answers = quiz.querySelectorAll('.quizlet-answer input[type="radio"]');
+        const answers = quiz.querySelectorAll('.dw-quiz-answer input[type="radio"]');
         answers.forEach(function(answer) {
             answer.addEventListener('change', function() {
                 showAnswerFeedback(this);
@@ -37,11 +37,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function showAnswerFeedback(answerElement) {
-    const label = answerElement.closest('.quizlet-answer');
-    const question = answerElement.closest('.quizlet-question');
+    const label = answerElement.closest('.dw-quiz-answer');
+    const question = answerElement.closest('.dw-quiz-question');
     
     // Remove previous feedback classes
-    question.querySelectorAll('.quizlet-answer').forEach(function(ans) {
+    question.querySelectorAll('.dw-quiz-answer').forEach(function(ans) {
         ans.classList.remove('correct', 'incorrect', 'selected');
     });
     
@@ -58,9 +58,9 @@ function showAnswerFeedback(answerElement) {
 
 function submitQuiz(quizId) {
     const quiz = document.getElementById(quizId);
-    const questions = quiz.querySelectorAll('.quizlet-question');
-    const scoreDiv = quiz.querySelector('.quizlet-score');
-    const scoreText = scoreDiv.querySelector('.quizlet-score-text');
+    const questions = quiz.querySelectorAll('.dw-quiz-question');
+    const scoreDiv = quiz.querySelector('.dw-quiz-score');
+    const scoreText = scoreDiv.querySelector('.dw-quiz-score-text');
     const errorMsg = quiz.dataset.errorAll || 'Please answer all questions before submitting.';
     const template = scoreDiv.dataset.template || 'You scored <strong>%d out of %d</strong> (%d%%)';
     const passMsg = scoreDiv.dataset.pass || 'Pass!';
@@ -118,12 +118,12 @@ function resetQuiz(quizId) {
     });
     
     // Remove feedback classes
-    quiz.querySelectorAll('.quizlet-answer').forEach(function(answer) {
+    quiz.querySelectorAll('.dw-quiz-answer').forEach(function(answer) {
         answer.classList.remove('correct', 'incorrect', 'selected');
     });
     
     // Hide score
-    const scoreDiv = quiz.querySelector('.quizlet-score');
+    const scoreDiv = quiz.querySelector('.dw-quiz-score');
     scoreDiv.style.display = 'none';
     scoreDiv.classList.remove('pass', 'fail');
 }
