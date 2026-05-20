@@ -1,8 +1,8 @@
-base   quizlet
+base   dw-quiz
 author Aaron Helton
-email  
+email  abhelton@gmail.com
 date   2026-04-01
-name   Quizlet Plugin
+name   DW-Quiz
 desc   A simple quiz plugin for DokuWiki
 url    
 license GPL 2.0
